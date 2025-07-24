@@ -13,6 +13,7 @@ export class GetAllRepositorie{
     async list():Promise <IEventEntity[]>{
         const events = await this.eventModel.find().lean().exec();
         return events.map((event) => ({
+            id: event._id,
             name: event.name,
             date: new Date(event.date),       
             hour: event.hour,

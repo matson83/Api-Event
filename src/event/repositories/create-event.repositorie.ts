@@ -7,7 +7,7 @@ import { IEventEntity } from "../interfaces/IEventEntity";
 @Injectable()
 export class CreateEventRepositorie{
     constructor(
-        @InjectModel(Event.name) private eventModel: Model<EventDocument>
+        @InjectModel(Event.name) private readonly eventModel: Model<EventDocument>
     ){}
 
     async execute(event:IEventEntity): Promise<IEventEntity>{
