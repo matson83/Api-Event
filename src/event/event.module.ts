@@ -12,6 +12,8 @@ import { GetIdRepositorie } from './repositories/getId-event.repositorie';
 import { GetIdService } from './services/getid-event.service';
 import { DeleteEventRepositorie } from './repositories/delete-event.repositorie';
 import { DeleteEventService } from './services/delete-event.service';
+import { ExistIdEventRepository } from './repositories/idExists-event.repositore';
+import { ExistIdEVentService } from './services/idExists-event.service';
 
 @Module({
   imports:[MongooseModule.forFeature([{name:Event.name,schema:EventSchema}])],
@@ -26,7 +28,9 @@ import { DeleteEventService } from './services/delete-event.service';
     GetIdRepositorie,
     GetIdService,
     DeleteEventRepositorie,
-    DeleteEventService
+    DeleteEventService,
+    ExistIdEventRepository,
+    ExistIdEVentService
     ],
   exports:[EventModule]
 })

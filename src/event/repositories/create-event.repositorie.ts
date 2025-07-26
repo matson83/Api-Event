@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Event, EventDocument } from "../Schema/events.schema";
 import { Model } from "mongoose";
 import { IEventEntity } from "../interfaces/IEventEntity";
+import { CreatedEventDto } from "../dto/created-event.dto";
 
 @Injectable()
 export class CreateEventRepositorie{
@@ -10,8 +11,8 @@ export class CreateEventRepositorie{
         @InjectModel(Event.name) private readonly eventModel: Model<EventDocument>
     ){}
 
-    async execute(event:IEventEntity): Promise<IEventEntity>{
-        const createdEvent = new this.eventModel(event);
+    async execute(dto:CreatedEventDto): Promise<IEventEntity>{
+        const createdEvent = new this.eventModel(dto);
         await createdEvent.save();
         return createdEvent.toObject(); 
     }

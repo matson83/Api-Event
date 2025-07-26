@@ -5,6 +5,8 @@ import { UpdateEventService } from './services/update-event.service';
 import { GetAllService } from './services/getall-event.service';
 import { GetIdService } from './services/getid-event.service';
 import { DeleteEventService } from './services/delete-event.service';
+import { CreatedEventDto } from './dto/created-event.dto';
+import { UpdateEventDto } from './dto/update-event.dto';
 
 @Controller('event')
 export class EventController {
@@ -19,17 +21,17 @@ export class EventController {
     }
 
     @Post('create')
-    async create(@Body() event:IEventEntity): Promise<IEventEntity>{
+    async create(@Body() dto: CreatedEventDto): Promise<IEventEntity>{
         return this.createEventService.criarEvento(
-            event
+            dto
         );
     }
 
     @Patch(':id')
-    async update(@Param('id') id: string,@Body() data:IEventEntity): Promise<IEventEntity>{
+    async update(@Param('id') id: string,@Body() dto:UpdateEventDto): Promise<IEventEntity>{
         return this.updateEventService.updateEvent(
             id,
-            data
+            dto
         );
     }
 

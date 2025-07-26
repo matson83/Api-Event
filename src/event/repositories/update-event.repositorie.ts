@@ -4,6 +4,7 @@ import { Event, EventDocument } from "../Schema/events.schema";
 import { Model } from "mongoose";
 import { IEventEntity } from "../interfaces/IEventEntity";
 import { NotFoundException } from '@nestjs/common';
+import { UpdateEventDto } from "../dto/update-event.dto";
 
 @Injectable()
 export class UpdateEventRepositorie{
@@ -11,7 +12,7 @@ export class UpdateEventRepositorie{
         @InjectModel(Event.name) private readonly eventModel: Model<EventDocument>
     ){}
 
-    async execute(id:string,data:Partial<IEventEntity>): Promise<IEventEntity>{
+    async execute(id:string,data:Partial<UpdateEventDto>): Promise<IEventEntity>{
         const updateEvent = await this.eventModel.findByIdAndUpdate(
             id,
             {$set:data},

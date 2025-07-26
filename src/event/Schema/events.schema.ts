@@ -15,7 +15,7 @@ export class Event extends Document{
     date:Date;
     
     @Prop({required:true})
-    hour:number;
+    hour:string;
 
     @Prop({required:true,})
     description:string;
