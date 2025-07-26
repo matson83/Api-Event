@@ -1,17 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { GetIdRepositorie } from "../repositories/getId-event.repositorie";
 import { IEventEntity } from "../interfaces/IEventEntity";
-import { ExistIdEventRepository } from "../repositories/idExists-event.repositore";
+import { ExistIdEVentService } from "./idExists-event.service";
+
 
 @Injectable()
 export class GetIdService{
     constructor(
         private readonly GetIdRepositorie:GetIdRepositorie,
-        private readonly ExistIdEventRepository:ExistIdEventRepository
+        private readonly ExistIdEventService:ExistIdEVentService
     ){}
 
     async listId(id): Promise<IEventEntity>{
-        await this.ExistIdEventRepository.existsById(id)
+        await this.ExistIdEventService.checkExists(id)
         return this.GetIdRepositorie.listById(id)
     }
 }

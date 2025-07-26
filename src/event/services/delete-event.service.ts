@@ -1,17 +1,17 @@
 import { Injectable } from "@nestjs/common";
 import { DeleteEventRepositorie } from "../repositories/delete-event.repositorie";
 import { IEventEntity } from "../interfaces/IEventEntity";
-import { ExistIdEventRepository } from "../repositories/idExists-event.repositore";
+import { ExistIdEVentService } from "./idExists-event.service";
 
 @Injectable()
 export class DeleteEventService{
     constructor(
         private readonly DeleteEventRepositorie:DeleteEventRepositorie,
-        private readonly ExistIdEventRepository:ExistIdEventRepository
+        private readonly ExistIdEventService:ExistIdEVentService
     ){}
 
     async delete(id:string):Promise <IEventEntity>{
-        await this.ExistIdEventRepository.existsById(id)
+        await this.ExistIdEventService.checkExists(id)
         return this.DeleteEventRepositorie.delete(id)
     }
 }
