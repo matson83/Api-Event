@@ -4,10 +4,12 @@ import { AppService } from './app.service';
 import { EventModule } from './event/event.module';
 
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [EventModule,
-    MongooseModule.forRoot('mongodb+srv://matsonjunior194:n9AR8ZeClqavO1gG@teste1.hoe1gzs.mongodb.net/?retryWrites=true&w=majority&appName=Teste1')
+    MongooseModule.forRoot('mongodb+srv://matsonjunior194:n9AR8ZeClqavO1gG@teste1.hoe1gzs.mongodb.net/?retryWrites=true&w=majority&appName=Teste1'),
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
