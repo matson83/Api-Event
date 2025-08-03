@@ -1,5 +1,5 @@
-import { Types } from "mongoose";
-import { Usuario } from "src/usuarios/interfaces/usuarios.schema";
+import { Types } from 'mongoose';
+import { Usuario } from 'src/usuarios/interfaces/usuarios.schema';
 
 export interface ITaskEntity {
   titulo: string;

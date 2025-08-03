@@ -1,4 +1,10 @@
-import { IsString, IsOptional, IsEnum, IsMongoId, IsISO8601 } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsEnum,
+  IsMongoId,
+  IsISO8601,
+} from 'class-validator';
 
 export class CreateTaskDto {
   @IsString({ message: 'O título é obrigatório.' })
@@ -19,10 +25,10 @@ export class CreateTaskDto {
   prioridade: 'baixa' | 'média' | 'alta';
 
   @IsOptional()
-  @IsISO8601({},{ message: 'Prazo deve ser uma data válida.' })
+  @IsISO8601({}, { message: 'Prazo deve ser uma data válida.' })
   prazo?: string;
 
   @IsOptional()
   @IsMongoId({ message: 'Usuário deve ser um ObjectId válido.' })
-  usuario?: string; 
+  usuario?: string;
 }

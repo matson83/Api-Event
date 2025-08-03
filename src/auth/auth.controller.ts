@@ -13,8 +13,11 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
-    const user = await this.authService.validateUser(loginDto.email, loginDto.senha);
+  async login(@Body() loginDto: LoginDto): Promise<any> {
+    const user = await this.authService.validateUser(
+      loginDto.email,
+      loginDto.senha,
+    );
     if (!user) {
       throw new UnauthorizedException('Email ou senha inválidos');
     }

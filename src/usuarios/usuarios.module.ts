@@ -6,11 +6,11 @@ import { Usuario, UsuarioSchema } from './interfaces/usuarios.schema';
 import { UsuariosRepository } from './usuarios.repository';
 
 @Module({
-  imports:[MongooseModule.forFeature([{name:Usuario.name,schema:UsuarioSchema}])],
-  providers: [UsuariosService,
-    UsuariosRepository
+  imports: [
+    MongooseModule.forFeature([{ name: Usuario.name, schema: UsuarioSchema }]),
   ],
+  providers: [UsuariosService, UsuariosRepository],
   controllers: [UsuariosController],
-  exports:[MongooseModule,UsuariosRepository, UsuariosService]
+  exports: [MongooseModule, UsuariosRepository, UsuariosService],
 })
 export class UsuariosModule {}

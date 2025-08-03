@@ -7,10 +7,11 @@ import { UsuariosModule } from 'src/usuarios/usuarios.module';
 import { TasksRepository } from './tasks.repository';
 
 @Module({
-  imports:[MongooseModule.forFeature([{name:Task.name,schema:TaskSchema}]),UsuariosModule],
+  imports: [
+    MongooseModule.forFeature([{ name: Task.name, schema: TaskSchema }]),
+    UsuariosModule,
+  ],
   controllers: [TasksController],
-  providers: [TasksService,
-    TasksRepository
-  ]
+  providers: [TasksService, TasksRepository],
 })
 export class TasksModule {}

@@ -30,7 +30,7 @@ export class Task extends Document {
   prazo: Date;
 
   @Prop({ type: Types.ObjectId, ref: 'Usuario', required: false })
-  usuario: Usuario
+  usuario: Usuario;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);

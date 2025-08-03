@@ -5,12 +5,12 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 
 @Controller('api/v1/usuarios')
 export class UsuariosController {
-    constructor(
-        private readonly UsuariosService:UsuariosService
-    ){}
+  constructor(private readonly UsuariosService: UsuariosService) {}
 
-    @Post()
-    async create(@Body() createUsuariosDto:CreateUsuarioDto):Promise<IUsuarioEntity>{
-        return this.UsuariosService.create(createUsuariosDto)
-    }
+  @Post()
+  async create(
+    @Body() createUsuariosDto: CreateUsuarioDto,
+  ): Promise<IUsuarioEntity> {
+    return this.UsuariosService.create(createUsuariosDto);
+  }
 }

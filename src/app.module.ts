@@ -9,11 +9,12 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://matsonjunior194:n9AR8ZeClqavO1gG@teste1.hoe1gzs.mongodb.net/?retryWrites=true&w=majority&appName=Teste1'),
+    MongooseModule.forRoot(
+      'mongodb+srv://matsonjunior194:n9AR8ZeClqavO1gG@teste1.hoe1gzs.mongodb.net/?retryWrites=true&w=majority&appName=Teste1',
+    ),
     TasksModule,
     UsuariosModule,
     AuthModule,
-    
   ],
   controllers: [AppController],
   providers: [AppService],
