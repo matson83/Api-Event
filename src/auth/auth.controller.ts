@@ -1,24 +1,23 @@
-import { Body, Controller, Post , Get} from '@nestjs/common';
-import { CreatedAuthDto } from './dto/created-auth.dto';
-import { IAuthEntity } from './interfaces/IAuthEntity';
-import { CreateAuthService } from './services/create-auth.service';
-import { GetAllAuthService } from './services/getAll-auth.service';
+import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { CreateUserDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 
-@Controller('auth')
+@Controller('api/v1/auth')
 export class AuthController {
+  constructor(private readonly authService: AuthService) {}
 
-    constructor(
-        private readonly CreateAuthService:CreateAuthService,
-        private readonly GetAllAuthService:GetAllAuthService
-    ){}
+  @Post('register')
+  async register(@Body() createUserDto: CreateUserDto) {
+    return this.authService.register(createUserDto);
+  }
 
-    @Post('create')
-    async createAuth(@Body() dto:CreatedAuthDto ):Promise<IAuthEntity>{
-        return this.CreateAuthService.createAuth(dto)
+  @Post('login')
+  async login(@Body() loginDto: LoginDto) {
+    const user = await this.authService.validateUser(loginDto.email, loginDto.senha);
+    if (!user) {
+      throw new UnauthorizedException('Email ou senha inválidos');
     }
-
-    @Get('list')
-    async getAll():Promise<IAuthEntity[]>{
-        return this.GetAllAuthService.getAll()
-    }
+    return this.authService.login(user);
+  }
 }

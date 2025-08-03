@@ -1,21 +1,19 @@
 import { Module } from '@nestjs/common';
+import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Auth, AuthSchema } from './schema/auth.schema';
-import { EventModule } from 'src/event/event.module';
-import { CreateAuthRepositorie } from './repositories/create-auth.repositories';
-import { CreateAuthService } from './services/create-auth.service';
-import { GetAllAuthRepositorie } from './repositories/getAll-auth.repositorie';
-import { GetAllAuthService } from './services/getAll-auth.service';
+import { UsuariosModule } from 'src/usuarios/usuarios.module';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports:[MongooseModule.forFeature([{name:Auth.name,schema:AuthSchema}]),EventModule],
-  controllers: [AuthController],
-  providers:[
-    CreateAuthRepositorie,
-    CreateAuthService,
-    GetAllAuthRepositorie,
-    GetAllAuthService
-  ]
+  imports:[UsuariosModule,
+    PassportModule,
+    JwtModule.register({
+      secret:'supersegredosecreto123',
+      signOptions:{expiresIn:'1h'}
+    })
+  ],
+  providers: [AuthService],
+  controllers: [AuthController]
 })
 export class AuthModule {}
